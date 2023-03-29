@@ -12,7 +12,8 @@
 }
 
 .right-side {
-  background-color: #eee;
+  background: url("./side_image.png");
+  background-size: cover;
 }
 
 /* Greetings box */
@@ -93,6 +94,7 @@
 /* Input side images */
 .input-image {
   width: 10%;
+  margin-right: 2%;
 }
 
 #register-button {
