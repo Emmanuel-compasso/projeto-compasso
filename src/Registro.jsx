@@ -1,16 +1,16 @@
-import "./Registro.css";
+import "./MyStyle.css";
 
 const Registro = () => {
   return (
     <div className="container">
       <div className="left-side">
-        <div className="greetings-container">
-          <h1 id="greetings-title">Olá,</h1>
-          <p id="greetings-text">Por favor, registre-se para continuar</p>
-        </div>
+        <header className="top-container">
+          <h1 className="top-title">Olá,</h1>
+          <p className="top-text">Por favor, registre-se para continuar</p>
+        </header>
 
         <form className="form-container">
-          <h1 id="form-title">Registro</h1>
+          <h1 className="form-title">Registro</h1>
 
           <div className="form-div-style">
             <input
@@ -165,9 +165,11 @@ const Registro = () => {
             </span>
           </div>
 
-          <input id="register-button" type="submit" value="Registrar-se" />
+          <input className="register-button" type="submit" value="Registrar-se" />
 
-          <p id="ending-text">Já possui uma conta? <span id="login-now">Faça Login</span></p>
+          <p className="ending-text">
+            Já possui uma conta? <span className="ending-text-redirect">Faça Login</span>
+          </p>
         </form>
       </div>
 
