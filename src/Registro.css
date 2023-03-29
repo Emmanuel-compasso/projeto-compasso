@@ -1,5 +1,6 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap");
 
+/* Pages body */
 .container {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -14,16 +15,36 @@
   background-color: #eee;
 }
 
-.text-container {
+/* Greetings box */
+.greetings-container {
   width: 25.5rem;
   margin: 0 auto;
-  border: 1px solid #000;
 }
 
+#greetings-title {
+  /* Olá, */
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 300%;
+  line-height: 150%;
+  color: #f5f5f5;
+}
+
+#greetings-text {
+  /* Por favor, registre-se para continuar */
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 100%;
+  line-height: 24px;
+  color: #f5f5f5;
+}
+
+/*  Form box */
 .form-container {
   width: 25.5rem;
   margin: 0 auto;
-  border: 1px solid #000;
   margin-top: 24px;
 
   display: flex;
@@ -32,37 +53,25 @@
   gap: 30px;
 }
 
-#greetings-title {
-  width: 125px;
-  height: 96px;
-  font-family: "Poppins";
-  font-style: normal;
-  font-weight: 500;
-  font-size: 64px;
-  line-height: 96px;
-  color: #f5f5f5;
-}
-
-#greetings-text {
-  width: 406px;
-  height: 24px;
+#form-title {
+  /* Registro */
   font-family: "Poppins";
   font-style: normal;
   font-weight: 400;
-  font-size: 16px;
-  line-height: 24px;
-  color: #f5f5f5;
-}
+  font-size: 150%;
+  line-height: 200%;
 
-#form-title {
   padding: 0px 8px;
   color: #f5f5f5;
 }
 
-.teste-style {
+/* Form div style to inputs */
+.form-div-style {
+  width: 100%;
+  height: 50%;
   border: 2px solid #f5f5f5;
   border-radius: 46px;
-  padding: 19px 24px;
+  padding: 1% 1%;
   background-color: transparent;
   color: #f5f5f5;
 
@@ -70,7 +79,69 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+}
 
+/* Input content style */
+.input-style {
+  width: 100%;
+  background-color: transparent;
+  border: 0px;
+  color: #f5f5f5;
+  margin-left: 4%;
+}
+
+/* Input side images */
+.input-image {
+  width: 10%;
+}
+
+#register-button {
+  width: 100%;
+  height: 50%;
+  /* orange */
+  border: 1px solid #fe2e05;
+  border-radius: 46px;
+  /* gradient button */
+  background: linear-gradient(180deg, #ad2d14 0%, #f42e07 100%);
+  color: #f5f5f5;
+  padding: 3% 3%;
+
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 24px;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+#ending-text {
+  /* Já possui uma conta? */
+  margin: 0 auto;
+  margin-bottom: 2rem;
+  color: #f5f5f5;
+
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+}
+
+/* Same paragraph as ending-text */
+#login-now {
+  /* Faça Login */
   width: 406px;
-  height: 60px;
+  height: 24px;
+  text-align: center;
+  color: #ffffff;
+
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 24px;
 }
