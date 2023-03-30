@@ -165,7 +165,7 @@ const Registro = () => {
             </span>
           </div>
 
-          <input className="register-button" type="submit" value="Registrar-se" />
+          <input className="submit-button" type="submit" value="Registrar-se" />
 
           <p className="ending-text">
             Já possui uma conta? <span className="ending-text-redirect">Faça Login</span>
