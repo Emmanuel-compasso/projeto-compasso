@@ -1,3 +1,4 @@
+import { NavLink } from "react-router-dom";
 import "./MyStyle.css";
 
 const Login = () => {
@@ -68,7 +69,7 @@ const Login = () => {
           <input className="submit-button" type="submit" value="Logar-se" />
 
           <p className="ending-text">
-            Novo por aqui? <span className="ending-text-redirect">Registre-se</span>
+            Novo por aqui? <NavLink to="/" className="ending-text-redirect">Registre-se</NavLink>
           </p>
         </form>
       </div>
