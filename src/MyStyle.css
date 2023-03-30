@@ -159,3 +159,15 @@
   font-size: 16px;
   line-height: 24px;
 }
+
+.error-message {
+  display: none;
+  border: 1px solid black;
+  color: #E9B425;
+
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 100%;
+  line-height: 24px;
+}

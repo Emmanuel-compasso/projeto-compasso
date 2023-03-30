@@ -1,7 +1,44 @@
 import { NavLink } from "react-router-dom";
+import ValidaRegistro from "./ValidaRegistro";
 import "./MyStyle.css";
 
 const Registro = () => {
+  function handleSubmit(event) {
+    event.preventDefault();
+
+    const values = event.target.elements;
+    const errors = ValidaRegistro(values);
+
+    const errorElements = document.querySelectorAll(".error-message");
+
+    errorElements.forEach((element) => {
+      element.style.display = "none";
+    });
+
+    const divElements = document.querySelectorAll(".form-div-style");
+
+    divElements.forEach((divElement) => {
+      divElement.style.border = "2px solid #f5f5f5";
+    });
+
+    if (Object.keys(errors).length === 0) {
+      alert("sem erros");
+    } else {
+      for (const fieldName in errors) {
+        const errorMessage = errors[fieldName];
+
+        const fieldElement = document.getElementById(`${fieldName}-error`);
+        fieldElement.innerHTML = errorMessage;
+        fieldElement.style.display = "block";
+
+        const divElement = document.getElementById(`${fieldName}-border`);
+        if (divElement) {
+          divElement.style.border = "2px solid yellow";
+        }
+      }
+    }
+  }
+
   return (
     <div className="container">
       <div className="left-side">
@@ -10,15 +47,15 @@ const Registro = () => {
           <p className="top-text">Por favor, registre-se para continuar</p>
         </header>
 
-        <form className="form-container">
+        <form className="form-container" onSubmit={handleSubmit}>
           <h1 className="form-title">Registro</h1>
 
-          <div className="form-div-style">
+          <div className="form-div-style" id="name-border">
             <input
-              type="text"
-              placeholder="Nome"
               className="input-style"
-              onFocus={(e) => (e.target.value = "")}
+              type="text"
+              id="name"
+              placeholder="Nome"
             />
 
             <span className="input-image">
@@ -38,13 +75,14 @@ const Registro = () => {
               </svg>
             </span>
           </div>
+          <span className="error-message" id="name-error"></span>
 
-          <div className="form-div-style">
+          <div className="form-div-style" id="user-border">
             <input
               className="input-style"
               type="text"
+              id="user"
               placeholder="Usuário"
-              onFocus={(e) => (e.target.value = "")}
             />
 
             <span className="input-image">
@@ -64,13 +102,14 @@ const Registro = () => {
               </svg>
             </span>
           </div>
+          <span className="error-message" id="user-error"></span>
 
-          <div className="form-div-style">
+          <div className="form-div-style" id="birthday-border">
             <input
               className="input-style"
               type="text"
+              id="birthday"
               placeholder="Nascimento"
-              onFocus={(e) => (e.target.value = "")}
             />
 
             <span className="input-image">
@@ -90,13 +129,14 @@ const Registro = () => {
               </svg>
             </span>
           </div>
+          <span className="error-message" id="birthday-error"></span>
 
-          <div className="form-div-style">
+          <div className="form-div-style" id="email-border">
             <input
               className="input-style"
               type="email"
+              id="email"
               placeholder="Email"
-              onFocus={(e) => (e.target.value = "")}
             />
 
             <span className="input-image">
@@ -115,13 +155,14 @@ const Registro = () => {
               </svg>
             </span>
           </div>
+          <span className="error-message" id="email-error"></span>
 
-          <div className="form-div-style">
+          <div className="form-div-style" id="password-border">
             <input
               className="input-style"
               type="password"
+              id="password"
               placeholder="Senha"
-              onFocus={(e) => (e.target.value = "")}
             />
             <span className="input-image">
               <svg
@@ -140,13 +181,14 @@ const Registro = () => {
               </svg>
             </span>
           </div>
+          <span className="error-message" id="password-error"></span>
 
-          <div className="form-div-style">
+          <div className="form-div-style" id="passwordconf-border">
             <input
               className="input-style"
               type="password"
+              id="passwordconf"
               placeholder="Confirmar Senha"
-              onFocus={(e) => (e.target.value = "")}
             />
             <span className="input-image">
               <svg
@@ -165,11 +207,15 @@ const Registro = () => {
               </svg>
             </span>
           </div>
+          <span className="error-message" id="passwordconf-error"></span>
 
           <input className="submit-button" type="submit" value="Registrar-se" />
 
           <p className="ending-text">
-            Já possui uma conta? <NavLink to="/login" className="ending-text-redirect">Faça Login</NavLink>
+            Já possui uma conta?{" "}
+            <NavLink to="/login" className="ending-text-redirect">
+              Faça Login
+            </NavLink>
           </p>
         </form>
       </div>
