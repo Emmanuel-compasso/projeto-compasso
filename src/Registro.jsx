@@ -3,6 +3,21 @@ import ValidaRegistro from "./ValidaRegistro";
 import "./MyStyle.css";
 
 const Registro = () => {
+
+  document.addEventListener("DOMContentLoaded", function() {
+
+    const dateInput = document.getElementById("birthday");
+
+    dateInput.addEventListener("focus", () => {
+      dateInput.type = "date";
+    });
+    
+    dateInput.addEventListener("blur", () => {
+      dateInput.type = "text";
+    });
+
+  });
+
   function handleSubmit(event) {
     event.preventDefault();
 
@@ -22,7 +37,10 @@ const Registro = () => {
     });
 
     if (Object.keys(errors).length === 0) {
-      alert("sem erros");
+      
+      localStorage.setItem('CadastroInfo', JSON.stringify(values));
+
+      alert("Cadastro bem-sucedido");
     } else {
       for (const fieldName in errors) {
         const errorMessage = errors[fieldName];
@@ -33,7 +51,7 @@ const Registro = () => {
 
         const divElement = document.getElementById(`${fieldName}-border`);
         if (divElement) {
-          divElement.style.border = "2px solid yellow";
+          divElement.style.border = "2px solid #E9B425";
         }
       }
     }

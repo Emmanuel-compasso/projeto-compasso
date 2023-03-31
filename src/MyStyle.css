@@ -171,3 +171,9 @@
   font-size: 100%;
   line-height: 24px;
 }
+
+/* Hide calendar icon on input type date */
+input[type="date"]::-webkit-calendar-picker-indicator {
+  display: none;
+  opacity: 0;
+}
