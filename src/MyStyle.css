@@ -1,5 +1,18 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap");
 
+/* Repetitive values */
+.top-title, .top-text, .form-title, .submit-button, .ending-text, .ending-text-redirect, .error-message {
+  font-family: "Poppins";
+  font-style: normal;
+  color: #f5f5f5;
+}
+
+.form-div-style, .input-style {
+  background-color: transparent;
+  color: #f5f5f5;
+}
+
+
 /* Pages body */
 .container {
   display: grid;
@@ -16,20 +29,21 @@
   background-size: cover;
 }
 
-/* Top text box */
+/* Top text container */
 .top-container {
   width: 25.5rem;
+
   margin: 0 auto;
 }
 
 .top-title {
   /* Olá, */
-  font-family: "Poppins";
-  font-style: normal;
+  /* Olá, */
   font-weight: 500;
   font-size: 300%;
   line-height: 150%;
-  color: #f5f5f5;
+
+  margin-bottom: 1rem;
 }
 
 #top-title-login {
@@ -39,52 +53,48 @@
 .top-text {
   /* Por favor, registre-se para continuar */
   /* Para continuar navegando de forma segura, efetue o login */
-  font-family: "Poppins";
-  font-style: normal;
   font-weight: 400;
   font-size: 100%;
   line-height: 24px;
-  color: #f5f5f5;
 }
 
 #top-text-login {
   margin-bottom: 20%;
 }
 
-/*  Form box */
+/*  Form content container */
 .form-container {
   width: 25.5rem;
+
   margin: 0 auto;
   margin-top: 24px;
 
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  padding-right: 1rem;
+
   gap: 30px;
 }
 
 .form-title {
   /* Registro */
   /* Login */
-  font-family: "Poppins";
-  font-style: normal;
   font-weight: 400;
   font-size: 150%;
   line-height: 200%;
 
   padding: 0px 8px;
-  color: #f5f5f5;
+  margin-bottom: -0.5rem;
 }
 
-/* Form div style to inputs */
 .form-div-style {
   width: 100%;
   height: 50%;
+  
   border: 2px solid #f5f5f5;
   border-radius: 46px;
   padding: 1% 1%;
-  background-color: transparent;
-  color: #f5f5f5;
 
   display: flex;
   flex-direction: row;
@@ -92,16 +102,12 @@
   align-items: center;
 }
 
-/* Input content style */
 .input-style {
   width: 100%;
-  background-color: transparent;
   border: 0px;
-  color: #f5f5f5;
   margin-left: 4%;
 }
 
-/* Input side images */
 .input-image {
   width: 10%;
   margin-right: 2%;
@@ -110,16 +116,13 @@
 .submit-button {
   width: 100%;
   height: 50%;
-  /* orange */
+  
   border: 1px solid #fe2e05;
   border-radius: 46px;
-  /* gradient button */
+
   background: linear-gradient(180deg, #ad2d14 0%, #f42e07 100%);
-  color: #f5f5f5;
   padding: 3% 3%;
 
-  font-family: "Poppins";
-  font-style: normal;
   font-weight: 600;
   font-size: 16px;
   line-height: 24px;
@@ -135,10 +138,7 @@
   /* Novo por aqui? */
   margin: 0 auto;
   margin-bottom: 2rem;
-  color: #f5f5f5;
 
-  font-family: "Poppins";
-  font-style: normal;
   font-weight: 400;
   font-size: 16px;
   line-height: 24px;
@@ -150,30 +150,89 @@
   /* Registre-se */
   width: 406px;
   height: 24px;
-  text-align: center;
-  color: #ffffff;
 
-  font-family: "Poppins";
-  font-style: normal;
+  color: #ffffff;
+  text-align: center;
+
   font-weight: 600;
   font-size: 16px;
   line-height: 24px;
 }
 
 .error-message {
-  display: none;
-  color: #E9B425;
   width: 100%;
+
+  color: #E9B425;
   text-align: center;
 
-  font-family: "Poppins";
-  font-style: normal;
   font-weight: 500;
   font-size: 100%;
   line-height: 24px;
+
+  display: none;
 }
 
-/* Hide calendar icon on input type date */
-input[type="date"]::-webkit-calendar-picker-indicator {
-  opacity: 0;
+
+/* Tablets */
+@media (max-width: 910px) {
+
+  .container {
+    grid-template-columns: auto;
+  }
+
+  .right-side {
+    display: none;
+  }
+
+}
+
+/* Mobiles */
+@media (max-width: 600px) {
+
+  .top-container {
+    width: 20rem;
+  }
+
+  .form-container {
+    width: 20rem;
+    margin-top: 3rem;
+  }
+}
+
+@media (max-height: 860px) {
+  
+  .top-title {
+    margin-top: 1rem;
+  }
+
+  .form-container {
+    margin-top: -1rem;
+  }
+}
+
+@media (max-height: 800px) {
+
+  .form-container {
+    margin-top: -1.5rem;
+  }
+
+  .top-title {
+    font-size: 250%;
+  }
+
+  .top-text {
+    font-size: 80%;
+    margin-top: -1rem;
+  }
+}
+
+@media (max-height: 740px) {
+
+  .top-container {
+    display: none;
+  }
+
+  .form-container {
+    margin-top: -0.5rem;
+  }
 }
