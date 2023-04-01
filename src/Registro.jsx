@@ -4,19 +4,7 @@ import "./MyStyle.css";
 
 const Registro = () => {
 
-  document.addEventListener("DOMContentLoaded", function() {
-
-    const dateInput = document.getElementById("birthday");
-
-    dateInput.addEventListener("focus", () => {
-      dateInput.type = "date";
-    });
-    
-    dateInput.addEventListener("blur", () => {
-      dateInput.type = "text";
-    });
-
-  });
+  
 
   function handleSubmit(event) {
     event.preventDefault();
@@ -37,10 +25,9 @@ const Registro = () => {
     });
 
     if (Object.keys(errors).length === 0) {
-      
-      localStorage.setItem('CadastroInfo', JSON.stringify(values));
 
       alert("Cadastro bem-sucedido");
+      
     } else {
       for (const fieldName in errors) {
         const errorMessage = errors[fieldName];
