@@ -1,5 +1,5 @@
 
-export default function ValidaRegistro(values) {
+export default function validateRegister(values) {
 
   const { name, user, birthday, email, password, passwordconf } = values;
 

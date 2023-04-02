@@ -1,11 +1,11 @@
 import { NavLink } from "react-router-dom";
-import handleSubmitRegistro from "./handleSubmitRegistro";
-import "./MyStyle.css";
+import handleSubmitRegister from "../handlers/handleSubmitRegister";
+import "../App.css";
 
 const Registro = () => {
 
   function handleSubmit(event) {
-    handleSubmitRegistro(event);
+    handleSubmitRegister(event);
   }
 
   return (
@@ -76,7 +76,7 @@ const Registro = () => {
           <div className="form-div-style" id="birthday-border">
             <input
               className="input-style"
-              type="text"
+              type="date"
               id="birthday"
               placeholder="Nascimento"
             />

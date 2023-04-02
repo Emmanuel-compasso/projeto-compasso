@@ -1,10 +1,10 @@
-import ValidaRegistro from "./ValidaRegistro";
+import validateRegister from "../validation/validateRegister";
 
 export default function handleSubmitRegistro(event) {
     event.preventDefault();
 
     const values = event.target.elements;
-    const errors = ValidaRegistro(values);
+    const errors = validateRegister(values);
 
     const errorElements = document.querySelectorAll(".error-message");
 

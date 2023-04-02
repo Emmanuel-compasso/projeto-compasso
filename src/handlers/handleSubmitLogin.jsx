@@ -1,4 +1,4 @@
-import ValidaLogin from "./ValidaLogin";
+import validateLogin from "../validation/validateLogin";
 
 export default function handleSubmitLogin(event) {
     event.preventDefault();
@@ -19,7 +19,7 @@ export default function handleSubmitLogin(event) {
       divElement.style.border = "2px solid #f5f5f5";
     });
 
-    if ( ValidaLogin(user, password) ) {
+    if ( validateLogin(user, password) ) {
 
       alert("Login bem-sucedido");
 

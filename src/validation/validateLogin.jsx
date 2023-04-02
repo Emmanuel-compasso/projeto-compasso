@@ -1,5 +1,5 @@
 
-export default function ValidaLogin(user, password) {
+export default function validateLogin(user, password) {
 
   if ( user === 'admin' && password === 'admin' ) {
     

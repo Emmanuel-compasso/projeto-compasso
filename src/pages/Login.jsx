@@ -1,6 +1,6 @@
 import { NavLink } from "react-router-dom";
-import handleSubmitLogin from "./handleSubmitLogin";
-import "./MyStyle.css";
+import handleSubmitLogin from "../handlers/handleSubmitLogin";
+import "../App.css";
 
 const Login = () => {
 
