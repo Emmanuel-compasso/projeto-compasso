@@ -129,7 +129,7 @@
 
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: center;
   align-items: flex-start;
 }
 
@@ -173,7 +173,7 @@
 }
 
 /* Remove calendar icon on type date */
-/** Not working with firefox */
+/* Not working with firefox */
 input[type="date"]::-webkit-inner-spin-button,
 input[type="date"]::-webkit-calendar-picker-indicator {
   display: none;
