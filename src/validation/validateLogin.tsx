@@ -1,5 +1,5 @@
 
-export default function validateLogin(user, password) {
+export default function validateLogin(user: String, password: String) {
 
   if ( user === 'admin' && password === 'admin' ) {
     

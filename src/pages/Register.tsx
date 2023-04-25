@@ -1,10 +1,11 @@
 import { NavLink } from "react-router-dom";
 import handleSubmitRegister from "../handlers/handleSubmitRegister";
 import "../App.css";
+import React from "react";
 
 const Registro = () => {
 
-  function handleSubmit(event) {
+  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     handleSubmitRegister(event);
   }
 

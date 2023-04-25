@@ -1,9 +1,26 @@
+interface FormValues {
+  name: { value: string };
+  user: { value: string };
+  birthday: { value: string };
+  email: { value: string };
+  password: { value: string };
+  passwordconf: { value: string };
+}
 
-export default function validateRegister(values) {
+interface FormErrors {
+  name?: string;
+  user?: string;
+  birthday?: string;
+  email?: string;
+  password?: string;
+  passwordconf?: string;
+}
+
+export default function validateRegister(values: FormValues): FormErrors {
 
   const { name, user, birthday, email, password, passwordconf } = values;
 
-  const errors = {};
+  const errors: FormErrors = {};
 
   if (!name.value) {
     errors.name = 'Por favor, informe um nome.';

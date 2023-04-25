@@ -1,8 +1,9 @@
 import { BrowserRouter as Router, Routes, Route} from "react-router-dom";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
+import React from "react";
 
-function App() {
+const App: React.FC = () => {
   return (
     <Router>
       <Routes>
