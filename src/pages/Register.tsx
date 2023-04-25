@@ -182,7 +182,7 @@ const Registro = () => {
           <input className="submit-button" type="submit" value="Registrar-se" />
 
           <p className="ending-text">
-            Já possui uma conta?{" "}
+            Já possui uma conta?
             <NavLink to="/login" className="ending-text-redirect">
               Faça Login
             </NavLink>
