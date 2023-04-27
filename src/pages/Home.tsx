@@ -1,12 +1,12 @@
 import "../App.css";
 import React from "react";
-import compassLogo from "./compass_uol_negativo.png";
+//import compassLogo from "./logo.png";
 
 const Home = () => {
   return (
     <div className="container home">
       <section className="nav">
-        <img src={compassLogo} alt="compass logo" />
+        {/*<img src={compassLogo} alt="compass logo" />*/}
       </section>
 
       <section>
@@ -36,7 +36,7 @@ const Home = () => {
             <div className="write_field">
             <form>
               <div>
-                <input className="input-style input-home" type="text" placeholder="No que você está pensando?" />
+                <input className="input-home" type="text" placeholder="No que você está pensando?" />
               </div>
               <br />
 
