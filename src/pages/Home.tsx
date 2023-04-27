@@ -1,37 +1,43 @@
 import "../App.css";
 import React from "react";
+import compassLogo from "./compass_uol_negativo.png";
 
 const Home = () => {
   return (
     <div className="container home">
       <section className="nav">
-        <img src="./compass_uol_negativo.png" alt="compass logo"></img>
+        <img src={compassLogo} alt="compass logo" />
       </section>
 
-      <section className="main">
+      <section>
         <header className="main_header">
-            <span className="header_home">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 20 20"
-            fill="currentColor"
-            className="w-5 h-5"
-            width="24"
-            height="24"
-          >
-            <path
-              fillRule="evenodd"
-              d="M9.293 2.293a1 1 0 011.414 0l7 7A1 1 0 0117 11h-1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-3a1 1 0 00-1-1H9a1 1 0 00-1 1v3a1 1 0 01-1 1H5a1 1 0 01-1-1v-6H3a1 1 0 01-.707-1.707l7-7z"
-              clipRule="evenodd"
-            />
-          </svg>
-          HOME</span><span className="header_user">NOME USUARIO, FOTO USUARIO</span>
+          <span className="header_home">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+              className="w-5 h-5"
+              width="24"
+              height="24"
+            >
+              <path
+                fillRule="evenodd"
+                d="M9.293 2.293a1 1 0 011.414 0l7 7A1 1 0 0117 11h-1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-3a1 1 0 00-1-1H9a1 1 0 00-1 1v3a1 1 0 01-1 1H5a1 1 0 01-1-1v-6H3a1 1 0 01-.707-1.707l7-7z"
+                clipRule="evenodd"
+              />
+            </svg>
+            HOME
+          </span>
+          <span className="header_user">NOME USUARIO, FOTO USUARIO</span>
         </header>
 
         <div className="main_body">
           <article className="posts">
+            <div className="write_field">
             <form>
-              <input type="text" placeholder="No que você está pensando?" />
+              <div>
+                <input className="input-style input-home" type="text" placeholder="No que você está pensando?" />
+              </div>
               <br />
 
               <svg
@@ -108,10 +114,25 @@ const Home = () => {
                   clip-rule="evenodd"
                 />
               </svg>
+              <input className="submit-post" type="submit" value="Postar"/>
             </form>
+            </div>
+
           </article>
 
-          <article className="topics">TOPICS</article>
+          <article className="topics">
+            <div className="topics-div">
+              MEUS Amigos
+            </div>
+
+            <div className="topics-div">
+
+            </div>
+
+            <div className="topics-div">
+
+            </div>
+          </article>
         </div>
       </section>
     </div>
