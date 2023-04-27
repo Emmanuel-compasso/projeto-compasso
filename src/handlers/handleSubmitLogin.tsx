@@ -1,6 +1,6 @@
 import validateLogin from "../validation/validateLogin";
 
-export default function handleSubmitLogin(event: React.FormEvent<HTMLFormElement>) {
+export default async function handleSubmitLogin(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
     const values = (event.target as HTMLFormElement).elements;
@@ -19,9 +19,12 @@ export default function handleSubmitLogin(event: React.FormEvent<HTMLFormElement
       (divElement as HTMLElement).style.border = "2px solid #f5f5f5";
     });
 
-    if ( validateLogin(user, password) ) {
+    const isValid = await validateLogin(user, password);
+
+    if ( isValid ) {
 
       alert("Login bem-sucedido");
+      
 
     } else {
 
