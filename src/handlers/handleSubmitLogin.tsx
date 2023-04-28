@@ -1,6 +1,6 @@
 import validateLogin from "../validation/validateLogin";
 
-export default async function handleSubmitLogin(event: React.FormEvent<HTMLFormElement>) {
+export default async function handleSubmitLogin(event: React.FormEvent<HTMLFormElement>, navigate: any) {
     event.preventDefault();
 
     const values = (event.target as HTMLFormElement).elements;
@@ -24,7 +24,7 @@ export default async function handleSubmitLogin(event: React.FormEvent<HTMLFormE
     if ( isValid ) {
 
       alert("Login bem-sucedido");
-      
+      navigate("/home");
 
     } else {
 

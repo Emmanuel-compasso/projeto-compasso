@@ -1,4 +1,4 @@
-export default async function validateLogin(user: String, password: String) {
+export default async function validateLogin(user: string, password: String) {
 
   const response = await fetch("http://localhost:3002/api/user");
   const data = await response.json();
@@ -14,6 +14,8 @@ export default async function validateLogin(user: String, password: String) {
     console.log("User: " + name + " pass: " + pass);
     
     if(name === user && pass === password) {
+
+      localStorage.setItem('userLogin', user);
       return true;
     }
   }

@@ -1,12 +1,14 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import handleSubmitLogin from "../handlers/handleSubmitLogin";
 import "../App.css";
 import React from "react";
 
 const Login = () => {
 
+  const navigate = useNavigate();
+
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
-    handleSubmitLogin(event);
+    handleSubmitLogin(event, navigate);
   }
 
   return (
