@@ -13,7 +13,51 @@ const Home = () => {
     }
   }, []);
 
-  fetch("http://localhost:3002/api/post")
+  fetch("http://localhost:3002/api/user")
+    .then((response) => response.json())
+    .then((data) => {
+      const users = data.users;
+
+      users.forEach(
+        (user: {
+          [x: string]: any;
+          name: any;
+        }) => {
+
+          const friendsList = document.createElement("div");
+          friendsList.setAttribute("class", "friends-div");
+
+          const userImg = document.createElement("img");
+          userImg.src = "https://picsum.photos/40/40";
+          userImg.setAttribute("class", "circular friends-img");
+
+          const userName = document.createElement("p");
+          userName.textContent = `${user.name}`;
+
+
+          friendsList.appendChild(userImg);
+          friendsList.appendChild(userName);
+
+          // Adicionar elemento HTML de post à página
+          document.body.appendChild(friendsList);
+
+          // Criar elemento que será usado como portal
+          const portalContainer = document.createElement("div");
+          portalContainer.id = "portal-container";
+          document.body.appendChild(portalContainer);
+
+          // Renderizar post dentro do portal
+          portalContainer.appendChild(friendsList);
+
+          const container = document.getElementById("td1");
+
+          container?.appendChild(friendsList);
+          
+        }
+      );
+    });
+
+  fetch("http://localhost:3002/api/user/post")
     .then((response) => response.json())
     .then((data) => {
       const posts = data.posts;
@@ -42,7 +86,7 @@ const Home = () => {
           const dateElement = document.createElement("p");
 
           const postContentWrapper = document.createElement("div");
-          postContentWrapper.setAttribute("class", "posts-content")
+          postContentWrapper.setAttribute("class", "posts-content");
 
           const descriptionElement = document.createElement("p");
           const imgContentElement = document.createElement("img");
@@ -59,13 +103,21 @@ const Home = () => {
           optionsElement.appendChild(commentsOption);
           optionsElement.appendChild(shareOption);
 
-          
+          const imgComment = document.createElement("img");
+          imgComment.src = "https://picsum.photos/50/50";
+          imgComment.setAttribute("class", "circular write_field_image");
+
+          const inputComment = document.createElement("input");
+          inputComment.setAttribute("class", "input-home");
+          inputComment.setAttribute("placeholder", "O que você está pensando?");
 
           const allComments = document.createElement("p");
           allComments.setAttribute("class", "all-comments");
           allComments.textContent = "Todos os comentários";
 
           const commentsElement = document.createElement("div");
+          commentsElement.appendChild(imgComment);
+          commentsElement.appendChild(inputComment);
           commentsElement.appendChild(allComments);
 
           // Adicionar conteúdo aos elementos HTML
@@ -75,13 +127,14 @@ const Home = () => {
           userElement.textContent = `${post.user}`;
           dateElement.textContent = `${post["post date"]}`;
           descriptionElement.textContent = `${post.description}`;
-          likesOption.textContent = `Curtiu ${post.likes}`;
+          likesOption.textContent = `Curtir ${post.likes}`;
 
           num++;
 
           // Loop pelos comentários
           const comments = post.comments;
           comments.forEach((comment: { user: any; comment: any }) => {
+
             // Criar elementos HTML para cada comentário
             const commentElement = document.createElement("div");
             const commentImg = document.createElement("img");
@@ -109,6 +162,7 @@ const Home = () => {
           postContentWrapper.appendChild(descriptionElement);
           postContentWrapper.appendChild(imgContentElement);
 
+
           // Adicionar elementos HTML de post ao elemento HTML de post
           postElement.appendChild(postWrapper);
           postElement.appendChild(postContentWrapper);
@@ -135,9 +189,11 @@ const Home = () => {
 
   return (
     <div className="container home">
-      <section className="nav">
-        {/*<img src={compassLogo} alt="compass logo" />*/}
-      </section>
+      <div>
+        <section className="nav">
+          {/*<img src={compassLogo} alt="compass logo" />*/}
+        </section>
+      </div>
 
       <section>
         <header className="main_header">
@@ -156,8 +212,8 @@ const Home = () => {
                 clipRule="evenodd"
               />
             </svg>
-            HOME
           </span>
+          <p className="header_home_p">HOME</p>
           <span className="header_user">
             {nameUser}
             <img
@@ -268,11 +324,11 @@ const Home = () => {
           </article>
 
           <article className="topics">
-            <div className="topics-div">MEUS Amigos</div>
+            <div className="topics-div" id="td1"><p className="myFriends">Meus Amigos</p></div>
 
-            <div className="topics-div"></div>
+            <div className="topics-div td2"></div>
 
-            <div className="topics-div"></div>
+            <div className="topics-div td3"></div>
           </article>
         </div>
       </section>

@@ -20,7 +20,7 @@ app.get('/api/user', (req, res) => {
     })
 })
 
-app.get('/api/post', (req, res) => {
+app.get('/api/user/post', (req, res) => {
     const file = path.join(__dirname, 'posts.json');
 
     fs.readFile(file, 'utf-8', (err, data) => {
