@@ -6,7 +6,7 @@ export default function handleSubmitPost(event: any, setInputValue: React.Dispat
 
         const userImg = document.createElement("img");
         userImg.setAttribute("class", "circular posts-img");
-        userImg.src = `https://picsum.photos/40/40`;
+        userImg.src = `https://picsum.photos/50/50`;
 
         const userElement = document.createElement("p");
         userElement.textContent = `${nameUser}`;
@@ -24,7 +24,7 @@ export default function handleSubmitPost(event: any, setInputValue: React.Dispat
         descriptionElement.textContent = `${inputValue}`;
 
         const imgContentElement = document.createElement("img");
-        imgContentElement.src = `https://picsum.photos/710/300`;
+        //imgContentElement.src = `https://picsum.photos/710/300`;
 
         const postContent = document.createElement("div");
         postContent.setAttribute("class", "posts-content");

@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import handleSubmitPost from "../handlers/handleSubmitPost";
 import loadFriends from "../fetchFunctions/loadFriends";
 import loadPosts from "../fetchFunctions/loadPosts";
@@ -21,17 +21,37 @@ const Home = () => {
     setInputValue(event.target.value);
   };
 
-  fetch("http://localhost:3002/api/user")
-    .then((response) => response.json())
-    .then((data) => {
-      loadFriends(data);
-    });
+  let friendsLodadedRef = useRef(false);
+  useEffect(() => {
 
-  fetch("http://localhost:3002/api/user/post")
-    .then((response) => response.json())
-    .then((data) => {
-      loadPosts(data);
-    });
+    async function fetchData() {
+      const response = await fetch("http://localhost:3002/api/user");
+      const data = await response.json();
+
+      if(!friendsLodadedRef.current) {
+        loadFriends(data);
+        friendsLodadedRef.current = true;
+      }
+    }
+
+    fetchData();
+  }, []);
+
+  let postsLoadedRef= useRef(false);
+  useEffect(() => {
+
+    async function fetchData() {
+      const response = await fetch("http://localhost:3002/api/user/post");
+      const data = await response.json();
+
+      if(!postsLoadedRef.current) {
+        loadPosts(data);
+        postsLoadedRef.current = true;
+      }
+    }
+
+    fetchData();
+  }, []);
 
   return (
     <div className="container home">

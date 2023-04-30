@@ -73,6 +73,7 @@ export default function loadPosts(data: any) {
         commentsInfo.appendChild(allComments);
 
 
+        if("comments" in post) {
         const comments = post.comments;
         comments.forEach((comment: { user: any; comment: any }) => {
 
@@ -94,6 +95,7 @@ export default function loadPosts(data: any) {
 
           commentsInfo.appendChild(commentInfo);
         });
+      }
 
         postElement.appendChild(userInfo);
         postElement.appendChild(postContent);
