@@ -12,7 +12,7 @@ interface MyFormValues {
 export default function handleSubmitRegistro(event: React.FormEvent<HTMLFormElement>) {
   event.preventDefault();
 
-  const values = (event.target as HTMLFormElement).elements as HTMLFormControlsCollection;
+  const values = (event.target as HTMLFormElement).elements;
   const formData: MyFormValues = {
     name: { value: (values.namedItem('name') as HTMLInputElement).value },
     user: { value: (values.namedItem('user') as HTMLInputElement).value },
@@ -22,17 +22,21 @@ export default function handleSubmitRegistro(event: React.FormEvent<HTMLFormElem
     passwordconf: { value: (values.namedItem('passwordconf') as HTMLInputElement).value },
   };
 
-  const errors = validateRegister(formData);
+  interface FormErrors {
+    [key: string]: any;
+  }
+
+  const errors: FormErrors = validateRegister(formData);
 
   const errorElements = document.querySelectorAll(".error-message");
 
-    errorElements.forEach((element) => {
+    errorElements.forEach((element: Element) => {
       (element as HTMLElement).style.display = "none";
     });
 
     const divElements = document.querySelectorAll(".form-div-style");
 
-    divElements.forEach((divElement) => {
+    divElements.forEach((divElement: Element) => {
       (divElement as HTMLElement).style.border = "2px solid #f5f5f5";
     });
 
@@ -41,15 +45,6 @@ export default function handleSubmitRegistro(event: React.FormEvent<HTMLFormElem
       alert("Cadastro bem-sucedido");
       
     } else {
-
-      interface FormErrors {
-        [key: string]: any;
-      }
-      
-      const errors: FormErrors = {
-        field1: 'Erro 1',
-        field2: 'Erro 2',
-      };
       
       for (const fieldName in errors) {
         if (Object.prototype.hasOwnProperty.call(errors, fieldName)) {
