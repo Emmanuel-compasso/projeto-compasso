@@ -1,7 +1,6 @@
 import "../App.css";
 import React from "react";
 import { useState, useEffect } from "react";
-//import compassLogo from "./logo.png";
 
 const Home = () => {
   const [nameUser, setNameUser] = useState("Guest");
@@ -13,48 +12,125 @@ const Home = () => {
     }
   }, []);
 
+  const [inputValue, setInputValue] = useState("");
+
+  const handleInputChange = (event: any) => {
+    setInputValue(event.target.value);
+  };
+
+  const HandleSubmit = (event: any) => {
+    event.preventDefault();
+
+    const postElement = document.createElement("div");
+    postElement.setAttribute("class", "post");
+
+    const imgElement = document.createElement("img");
+    imgElement.setAttribute("class", "circular posts-img");
+
+    const postWrapper = document.createElement("div");
+    postWrapper.setAttribute("class", "posts-info");
+
+    const userElement = document.createElement("p");
+    const dateElement = document.createElement("p");
+
+    const postContentWrapper = document.createElement("div");
+    postContentWrapper.setAttribute("class", "posts-content");
+
+    const descriptionElement = document.createElement("p");
+    const imgContentElement = document.createElement("img");
+
+    const likesOption = document.createElement("p");
+    const commentsOption = document.createElement("p");
+    commentsOption.textContent = "Comentários";
+    const shareOption = document.createElement("p");
+    shareOption.textContent = "Compartilhar";
+
+    const optionsElement = document.createElement("div");
+    optionsElement.setAttribute("class", "post-options");
+    optionsElement.appendChild(likesOption);
+    optionsElement.appendChild(commentsOption);
+    optionsElement.appendChild(shareOption);
+
+    const imgComment = document.createElement("img");
+    imgComment.src = "https://picsum.photos/50/50";
+    imgComment.setAttribute("class", "circular write_field_image");
+
+    const inputComment = document.createElement("input");
+    inputComment.setAttribute("class", "input-home");
+    inputComment.setAttribute("placeholder", "O que você está pensando?");
+
+    const allComments = document.createElement("p");
+    allComments.setAttribute("class", "all-comments");
+    allComments.textContent = "Todos os comentários";
+
+    const commentsElement = document.createElement("div");
+    commentsElement.appendChild(imgComment);
+    commentsElement.appendChild(inputComment);
+    commentsElement.appendChild(allComments);
+
+    imgElement.src = `https://picsum.photos/50/50`;
+    imgContentElement.src = `https://picsum.photos/80/80`;
+    userElement.textContent = `${nameUser}`;
+    dateElement.textContent = `Agora mesmo...`;
+    descriptionElement.textContent = `${inputValue}`;
+    likesOption.textContent = `Curtir`;
+
+    postWrapper.appendChild(imgElement);
+    postWrapper.appendChild(userElement);
+    postWrapper.appendChild(dateElement);
+
+    postContentWrapper.appendChild(descriptionElement);
+    postContentWrapper.appendChild(imgContentElement);
+
+    // Adicionar elementos HTML de post ao elemento HTML de post
+    postElement.appendChild(postWrapper);
+    postElement.appendChild(postContentWrapper);
+    postElement.appendChild(optionsElement);
+    postElement.appendChild(commentsElement);
+
+    const postsDiv = document.getElementById("posts-div")!;
+    const firstChild = postsDiv.firstChild;
+
+    postsDiv.insertBefore(postElement, firstChild);
+
+    // Limpar o valor do input
+    setInputValue("");
+  };
+
   fetch("http://localhost:3002/api/user")
     .then((response) => response.json())
     .then((data) => {
       const users = data.users;
 
-      users.forEach(
-        (user: {
-          [x: string]: any;
-          name: any;
-        }) => {
+      users.forEach((user: { [x: string]: any; name: any }) => {
+        const friendsList = document.createElement("div");
+        friendsList.setAttribute("class", "friends-div");
 
-          const friendsList = document.createElement("div");
-          friendsList.setAttribute("class", "friends-div");
+        const userImg = document.createElement("img");
+        userImg.src = "https://picsum.photos/40/40";
+        userImg.setAttribute("class", "circular friends-img");
 
-          const userImg = document.createElement("img");
-          userImg.src = "https://picsum.photos/40/40";
-          userImg.setAttribute("class", "circular friends-img");
+        const userName = document.createElement("p");
+        userName.textContent = `${user.name}`;
 
-          const userName = document.createElement("p");
-          userName.textContent = `${user.name}`;
+        friendsList.appendChild(userImg);
+        friendsList.appendChild(userName);
 
+        // Adicionar elemento HTML de post à página
+        document.body.appendChild(friendsList);
 
-          friendsList.appendChild(userImg);
-          friendsList.appendChild(userName);
+        // Criar elemento que será usado como portal
+        const portalContainer = document.createElement("div");
+        portalContainer.id = "portal-container";
+        document.body.appendChild(portalContainer);
 
-          // Adicionar elemento HTML de post à página
-          document.body.appendChild(friendsList);
+        // Renderizar post dentro do portal
+        portalContainer.appendChild(friendsList);
 
-          // Criar elemento que será usado como portal
-          const portalContainer = document.createElement("div");
-          portalContainer.id = "portal-container";
-          document.body.appendChild(portalContainer);
+        const container = document.getElementById("td1");
 
-          // Renderizar post dentro do portal
-          portalContainer.appendChild(friendsList);
-
-          const container = document.getElementById("td1");
-
-          container?.appendChild(friendsList);
-          
-        }
-      );
+        container?.appendChild(friendsList);
+      });
     });
 
   fetch("http://localhost:3002/api/user/post")
@@ -123,7 +199,6 @@ const Home = () => {
           // Adicionar conteúdo aos elementos HTML
           imgElement.src = `https://picsum.photos/50/50?random=${num}`;
           imgContentElement.src = `https://picsum.photos/710/300?random=${num}`;
-          console.log(num);
           userElement.textContent = `${post.user}`;
           dateElement.textContent = `${post["post date"]}`;
           descriptionElement.textContent = `${post.description}`;
@@ -134,7 +209,6 @@ const Home = () => {
           // Loop pelos comentários
           const comments = post.comments;
           comments.forEach((comment: { user: any; comment: any }) => {
-
             // Criar elementos HTML para cada comentário
             const commentElement = document.createElement("div");
             const commentImg = document.createElement("img");
@@ -161,7 +235,6 @@ const Home = () => {
 
           postContentWrapper.appendChild(descriptionElement);
           postContentWrapper.appendChild(imgContentElement);
-
 
           // Adicionar elementos HTML de post ao elemento HTML de post
           postElement.appendChild(postWrapper);
@@ -191,7 +264,7 @@ const Home = () => {
     <div className="container home">
       <div>
         <section className="nav">
-          {/*<img src={compassLogo} alt="compass logo" />*/}
+          <img src="logo.png" alt="compass logo" />
         </section>
       </div>
 
@@ -227,7 +300,7 @@ const Home = () => {
         <div className="main_body">
           <article className="posts">
             <div className="write_field">
-              <form>
+              <form id="post_form" onSubmit={HandleSubmit}>
                 <div>
                   <img
                     src="https://picsum.photos/50/50"
@@ -237,7 +310,10 @@ const Home = () => {
                   <input
                     className="input-home"
                     type="text"
+                    id="post_input"
                     placeholder="No que você está pensando?"
+                    value={inputValue}
+                    onChange={handleInputChange}
                   />
                 </div>
                 <br />
@@ -316,7 +392,9 @@ const Home = () => {
                     clipRule="evenodd"
                   />
                 </svg>
-                <input className="submit-post" type="submit" value="Postar" />
+                <button className="submit-post" type="submit">
+                  Postar
+                </button>
               </form>
             </div>
 
@@ -324,7 +402,9 @@ const Home = () => {
           </article>
 
           <article className="topics">
-            <div className="topics-div" id="td1"><p className="myFriends">Meus Amigos</p></div>
+            <div className="topics-div" id="td1">
+              <p className="myFriends">Meus Amigos</p>
+            </div>
 
             <div className="topics-div td2"></div>
 
