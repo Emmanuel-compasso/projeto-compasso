@@ -1,9 +1,9 @@
-import "../App.css";
-import React from "react";
 import { useState, useEffect } from "react";
 import handleSubmitPost from "../handlers/handleSubmitPost";
 import loadFriends from "../fetchFunctions/loadFriends";
 import loadPosts from "../fetchFunctions/loadPosts";
+import "../App.css";
+import React from "react";
 
 const Home = () => {
   const [nameUser, setNameUser] = useState("Guest");

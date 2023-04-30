@@ -1,7 +1,6 @@
 export default function loadPosts(data: any) {
     const posts = data.posts;
 
-    // Loop pelos posts
     posts.forEach(
       (post: {
         [x: string]: any;
@@ -10,36 +9,51 @@ export default function loadPosts(data: any) {
         likes: any;
         comments: any;
       }) => {
-        // Criar elementos HTML para cada post
+
         const postElement = document.createElement("div");
         postElement.setAttribute("class", "post");
 
-        const imgElement = document.createElement("img");
-        imgElement.setAttribute("class", "circular posts-img");
-
-        const postWrapper = document.createElement("div");
-        postWrapper.setAttribute("class", "posts-info");
+        const userImg = document.createElement("img");
+        userImg.setAttribute("class", "circular posts-img");
+        userImg.src = `https://picsum.photos/40/40`;
 
         const userElement = document.createElement("p");
-        const dateElement = document.createElement("p");
+        userElement.textContent = `${post.user}`;
 
-        const postContentWrapper = document.createElement("div");
-        postContentWrapper.setAttribute("class", "posts-content");
+        const dateElement = document.createElement("p");
+        dateElement.textContent = `${post["post date"]}`;
+
+        const userInfo = document.createElement("div");
+        userInfo.setAttribute("class", "posts-info");
+        userInfo.appendChild(userImg);
+        userInfo.appendChild(userElement);
+        userInfo.appendChild(dateElement);
 
         const descriptionElement = document.createElement("p");
+        descriptionElement.textContent = `${post.description}`;
+
         const imgContentElement = document.createElement("img");
+        imgContentElement.src = `https://picsum.photos/710/300`;
+
+        const postContent = document.createElement("div");
+        postContent.setAttribute("class", "posts-content");
+        postContent.appendChild(descriptionElement);
+        postContent.appendChild(imgContentElement);
 
         const likesOption = document.createElement("p");
+        likesOption.textContent = `Curtir ${post.likes}`;
+
         const commentsOption = document.createElement("p");
         commentsOption.textContent = "Comentários";
+
         const shareOption = document.createElement("p");
         shareOption.textContent = "Compartilhar";
 
-        const optionsElement = document.createElement("div");
-        optionsElement.setAttribute("class", "post-options");
-        optionsElement.appendChild(likesOption);
-        optionsElement.appendChild(commentsOption);
-        optionsElement.appendChild(shareOption);
+        const optionsInfo = document.createElement("div");
+        optionsInfo.setAttribute("class", "post-options");
+        optionsInfo.appendChild(likesOption);
+        optionsInfo.appendChild(commentsOption);
+        optionsInfo.appendChild(shareOption);
 
         const imgComment = document.createElement("img");
         imgComment.src = "https://picsum.photos/50/50";
@@ -53,68 +67,47 @@ export default function loadPosts(data: any) {
         allComments.setAttribute("class", "all-comments");
         allComments.textContent = "Todos os comentários";
 
-        const commentsElement = document.createElement("div");
-        commentsElement.appendChild(imgComment);
-        commentsElement.appendChild(inputComment);
-        commentsElement.appendChild(allComments);
+        const commentsInfo = document.createElement("div");
+        commentsInfo.appendChild(imgComment);
+        commentsInfo.appendChild(inputComment);
+        commentsInfo.appendChild(allComments);
 
-        // Adicionar conteúdo aos elementos HTML
-        imgElement.src = `https://picsum.photos/40/40`;
-        imgContentElement.src = `https://picsum.photos/710/300`;
-        userElement.textContent = `${post.user}`;
-        dateElement.textContent = `${post["post date"]}`;
-        descriptionElement.textContent = `${post.description}`;
-        likesOption.textContent = `Curtir ${post.likes}`;
 
-        // Loop pelos comentários
         const comments = post.comments;
         comments.forEach((comment: { user: any; comment: any }) => {
-          // Criar elementos HTML para cada comentário
-          const commentElement = document.createElement("div");
-          const commentImg = document.createElement("img");
-          commentImg.setAttribute("class", "circular posts-comments-img");
-          const userCommentElement = document.createElement("p");
-          const commentContentElement = document.createElement("p");
 
-          // Adicionar conteúdo aos elementos HTML
-          commentImg.src = "https://picsum.photos/40/40";
-          userCommentElement.textContent = `${comment.user}`;
-          commentContentElement.textContent = `${comment.comment}`;
+          const commentInfo = document.createElement("div");
 
-          // Adicionar elementos HTML de comentário ao elemento HTML de comentários
-          commentElement.appendChild(commentImg);
-          commentElement.appendChild(userCommentElement);
-          commentElement.appendChild(commentContentElement);
-          commentsElement.appendChild(commentElement);
+          const userCommentImg = document.createElement("img");
+          userCommentImg.setAttribute("class", "circular posts-comments-img");
+          userCommentImg.src = "https://picsum.photos/40/40";
+
+          const userCommentName = document.createElement("p");
+          userCommentName.textContent = `${comment.user}`;
+
+          const userCommentContent = document.createElement("p");
+          userCommentContent.textContent = `${comment.comment}`;
+
+          commentInfo.appendChild(userCommentImg);
+          commentInfo.appendChild(userCommentName);
+          commentInfo.appendChild(userCommentContent);
+
+          commentsInfo.appendChild(commentInfo);
         });
 
-        // adicionar ao wrapper
-        postWrapper.appendChild(imgElement);
-        postWrapper.appendChild(userElement);
-        postWrapper.appendChild(dateElement);
+        postElement.appendChild(userInfo);
+        postElement.appendChild(postContent);
+        postElement.appendChild(optionsInfo);
+        postElement.appendChild(commentsInfo);
 
-        postContentWrapper.appendChild(descriptionElement);
-        postContentWrapper.appendChild(imgContentElement);
-
-        // Adicionar elementos HTML de post ao elemento HTML de post
-        postElement.appendChild(postWrapper);
-        postElement.appendChild(postContentWrapper);
-        postElement.appendChild(optionsElement);
-        postElement.appendChild(commentsElement);
-
-        // Adicionar elemento HTML de post à página
         document.body.appendChild(postElement);
 
-        // Criar elemento que será usado como portal
         const portalContainer = document.createElement("div");
         portalContainer.id = "portal-container";
         document.body.appendChild(portalContainer);
-
-        // Renderizar post dentro do portal
         portalContainer.appendChild(postElement);
 
         const container = document.getElementById("posts-div");
-
         container?.appendChild(postElement);
       }
     );
