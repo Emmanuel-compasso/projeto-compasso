@@ -84,9 +84,12 @@ export default function loadPosts(data: any) {
           userCommentImg.src = "https://picsum.photos/40/40";
 
           const userCommentName = document.createElement("p");
-          userCommentName.textContent = `${comment.user}`;
+          userCommentName.setAttribute("class", "posts-comments-name");
+          userCommentName.textContent = `${comment.user}:&nbsp;`;
+          userCommentName.innerHTML = `${comment.user}:&nbsp;`;
 
           const userCommentContent = document.createElement("p");
+          userCommentContent.setAttribute("class", "posts-comments-content");
           userCommentContent.textContent = `${comment.comment}`;
 
           commentInfo.appendChild(userCommentImg);
