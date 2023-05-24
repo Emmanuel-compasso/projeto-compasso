@@ -85,7 +85,6 @@ export default function loadPosts(data: any) {
 
           const userCommentName = document.createElement("p");
           userCommentName.setAttribute("class", "posts-comments-name");
-          userCommentName.textContent = `${comment.user}:&nbsp;`;
           userCommentName.innerHTML = `${comment.user}:&nbsp;`;
 
           const userCommentContent = document.createElement("p");
