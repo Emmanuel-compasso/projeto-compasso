@@ -8,6 +8,7 @@ import {
   Put,
 } from '@nestjs/common';
 import { UsersService } from './users.service';
+import { User } from './users.entity';
 
 @Controller('api/v1/users')
 export class UsersController {
@@ -19,24 +20,22 @@ export class UsersController {
   }
 
   @Get('/:id')
-  getOneUser(@Param('id') id: string): any {
-    //return this.usersService.getOneUser();
-    console.log(id);
+  getOneUser(@Param('id') id: number): any {
+    return this.usersService.getOneUser(id);
   }
 
   @Post()
-  postNewUser(@Body() body: any): any {
-    //return this.usersService.postNewUser();
-    console.log(body);
+  postNewUser(@Body() body: User): any {
+    return this.usersService.postNewUser(body);
   }
 
   @Put('/:id')
-  putUpdateUser(): any {
-    return this.usersService.putUpdateUser();
+  putUpdateUser(@Param('id') id: number, @Body() body: any): any {
+    return this.usersService.putUpdateUser(id, body);
   }
 
   @Delete('/:id')
-  deleteUser(): any {
-    return this.usersService.deleteUser();
+  deleteUser(@Param('id') id: number): any {
+    return this.usersService.deleteUser(id);
   }
 }

@@ -1,16 +1,11 @@
-interface Users {
-    id: number;
-    name: string;
-    user?: string;
-    birthdate?: Date;
-    email?: string;
-    profile_photo?: URL;
-}
+import { Repository } from 'typeorm';
+import { User } from './users.entity';
 export declare class UsersService {
-    getAllUsers(): Users;
-    getOneUser(): Users;
-    postNewUser(): Users;
-    putUpdateUser(): Users;
-    deleteUser(): Users;
+    private userRepository;
+    constructor(userRepository: Repository<User>);
+    getAllUsers(): Promise<User[]>;
+    getOneUser(id: number): Promise<User>;
+    postNewUser(user: User): Promise<User>;
+    putUpdateUser(id: number, updatedUser: User): Promise<User>;
+    deleteUser(id: number): Promise<void>;
 }
-export {};

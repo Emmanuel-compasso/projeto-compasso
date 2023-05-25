@@ -6,20 +6,29 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.UsersModule = void 0;
+exports.AppModule = void 0;
 const common_1 = require("@nestjs/common");
-const users_controller_1 = require("./users.controller");
-const users_service_1 = require("./users.service");
 const typeorm_1 = require("@nestjs/typeorm");
-const users_entity_1 = require("./users.entity");
-let UsersModule = class UsersModule {
+const app_controller_1 = require("./app.controller");
+const app_service_1 = require("./app.service");
+const users_module_1 = require("./users/users.module");
+const users_entity_1 = require("./users/users.entity");
+let AppModule = class AppModule {
 };
-UsersModule = __decorate([
+AppModule = __decorate([
     (0, common_1.Module)({
-        imports: [typeorm_1.TypeOrmModule.forFeature([users_entity_1.User])],
-        controllers: [users_controller_1.UsersController],
-        providers: [users_service_1.UsersService],
+        imports: [
+            typeorm_1.TypeOrmModule.forRoot({
+                type: 'sqlite',
+                database: 'db.sqlite',
+                entities: [users_entity_1.User],
+                synchronize: false,
+            }),
+            users_module_1.UsersModule,
+        ],
+        controllers: [app_controller_1.AppController],
+        providers: [app_service_1.AppService],
     })
-], UsersModule);
-exports.UsersModule = UsersModule;
-//# sourceMappingURL=users.module.js.map
+], AppModule);
+exports.AppModule = AppModule;
+//# sourceMappingURL=app.module.js.map
