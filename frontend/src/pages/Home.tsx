@@ -23,12 +23,16 @@ const Home = () => {
 
   let friendsLodadedRef = useRef(false);
   useEffect(() => {
-
     async function fetchData() {
-      const response = await fetch("http://localhost:3002/api/user");
+      const response = await fetch("http://localhost:3002/api/v1/users", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
       const data = await response.json();
 
-      if(!friendsLodadedRef.current) {
+      if (!friendsLodadedRef.current) {
         loadFriends(data);
         friendsLodadedRef.current = true;
       }
@@ -37,14 +41,18 @@ const Home = () => {
     fetchData();
   }, []);
 
-  let postsLoadedRef= useRef(false);
+  let postsLoadedRef = useRef(false);
   useEffect(() => {
-
     async function fetchData() {
-      const response = await fetch("http://localhost:3002/api/user/post");
+      const response = await fetch("http://localhost:3002/api/v1/posts", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
       const data = await response.json();
 
-      if(!postsLoadedRef.current) {
+      if (!postsLoadedRef.current) {
         loadPosts(data);
         postsLoadedRef.current = true;
       }

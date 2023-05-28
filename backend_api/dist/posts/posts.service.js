@@ -66,28 +66,20 @@ let PostsService = class PostsService {
         const description = updatedPost.description;
         const url_imagem = updatedPost.url_imagem;
         const query = `UPDATE post SET user = ?, description = ?, url_imagem = ? WHERE id = ?`;
-        const result = await this.postRepository.query(query, [
-            user,
-            description,
-            url_imagem,
-            id,
-        ]);
-        if (result.id == null) {
-            return { status: 404, msg: 'Erro: Usuário não existe' };
+        await this.postRepository.query(query, [user, description, url_imagem, id]);
+        const newPost = await this.getOnePost(id);
+        if (newPost.status == 404) {
+            return { status: 404, msg: 'Erro: Post não existe' };
         }
-        const insertedIdQuery = `SELECT last_insert_rowid() as id`;
-        const insertedIdResult = await this.postRepository.query(insertedIdQuery);
-        const insertedId = insertedIdResult[0].id;
-        const query2 = `SELECT id, user, post_date, description, likes, url_imagem FROM user WHERE id = ?`;
-        const newPost = await this.postRepository.query(query2, [insertedId]);
         return { status: 200, msg: 'Sucesso', post: newPost[0] };
     }
     async deletePost(id) {
         const query = `DELETE FROM post WHERE id = ?`;
-        const result = await this.postRepository.query(query, [id]);
-        if (result.id == null) {
+        const result = await this.getOnePost(id);
+        if (result === undefined || result.status == 404) {
             return { status: 404, msg: 'Erro: Post não existe' };
         }
+        await this.postRepository.query(query, [id]);
         return { status: 204, msg: 'Sucesso' };
     }
 };

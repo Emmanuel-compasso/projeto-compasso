@@ -48,6 +48,8 @@ let UsersService = class UsersService {
             null) {
             return { status: 400, msg: 'Erro: Campo inválido' };
         }
+        console.log(user);
+        console.log(user.name);
         const query = `INSERT INTO user (name, user, birthdate, email, profile_photo, password) VALUES (?, ?, ?, ?, ?, ?)`;
         await this.userRepository.query(query, [
             name,
@@ -67,14 +69,14 @@ let UsersService = class UsersService {
     async postLogin(user) {
         const username = user.user;
         const password = user.password;
-        const query = `SELECT user, password FROM user WHERE user = ? AND password = ?`;
+        const query = `SELECT user, password, id FROM user WHERE user = ? AND password = ?`;
         const result = await this.userRepository.query(query, [username, password]);
         if (result.length > 0) {
             const userId = result[0].id;
             const loggedInUser = await this.getOneUser(userId);
             return { status: 200, msg: 'Sucesso', user: loggedInUser.user };
         }
-        return { status: 400, msg: 'Erro: Usuário inválido' };
+        return { status: 400, msg: 'Erro: Credenciais inválidas' };
     }
     async putUpdateUser(id, updatedUser) {
         const name = updatedUser.name;

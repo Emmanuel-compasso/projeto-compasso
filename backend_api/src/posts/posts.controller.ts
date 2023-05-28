@@ -12,30 +12,30 @@ import { Post as PostEntity } from './posts.entity';
 
 @Controller('api/v1/posts')
 export class PostsController {
-  constructor(private readonly usersService: PostsService) {}
+  constructor(private readonly postsService: PostsService) {}
 
   @Get()
-  getAllUsers(): any {
-    return this.usersService.getAllPosts();
+  getAllPosts(): any {
+    return this.postsService.getAllPosts();
   }
 
   @Get('/:id')
-  getOneUser(@Param('id') id: number): any {
-    return this.usersService.getOnePost(id);
+  getOnePost(@Param('id') id: number): any {
+    return this.postsService.getOnePost(id);
   }
 
   @Post()
-  postNewUser(@Body() body: PostEntity): any {
-    return this.usersService.postNewPost(body);
+  postNewPost(@Body() body: PostEntity): any {
+    return this.postsService.postNewPost(body);
   }
 
   @Put('/:id')
-  putUpdateUser(@Param('id') id: number, @Body() body: any): any {
-    return this.usersService.putUpdatePost(id, body);
+  putUpdatePost(@Param('id') id: number, @Body() body: any): any {
+    return this.postsService.putUpdatePost(id, body);
   }
 
   @Delete('/:id')
-  deleteUser(@Param('id') id: number): any {
-    return this.usersService.deletePost(id);
+  deletePost(@Param('id') id: number): any {
+    return this.postsService.deletePost(id);
   }
 }

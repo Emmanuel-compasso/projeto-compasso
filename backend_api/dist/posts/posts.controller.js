@@ -17,23 +17,23 @@ const common_1 = require("@nestjs/common");
 const posts_service_1 = require("./posts.service");
 const posts_entity_1 = require("./posts.entity");
 let PostsController = class PostsController {
-    constructor(usersService) {
-        this.usersService = usersService;
+    constructor(postsService) {
+        this.postsService = postsService;
     }
-    getAllUsers() {
-        return this.usersService.getAllPosts();
+    getAllPosts() {
+        return this.postsService.getAllPosts();
     }
-    getOneUser(id) {
-        return this.usersService.getOnePost(id);
+    getOnePost(id) {
+        return this.postsService.getOnePost(id);
     }
-    postNewUser(body) {
-        return this.usersService.postNewPost(body);
+    postNewPost(body) {
+        return this.postsService.postNewPost(body);
     }
-    putUpdateUser(id, body) {
-        return this.usersService.putUpdatePost(id, body);
+    putUpdatePost(id, body) {
+        return this.postsService.putUpdatePost(id, body);
     }
-    deleteUser(id) {
-        return this.usersService.deletePost(id);
+    deletePost(id) {
+        return this.postsService.deletePost(id);
     }
 };
 __decorate([
@@ -41,21 +41,21 @@ __decorate([
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Object)
-], PostsController.prototype, "getAllUsers", null);
+], PostsController.prototype, "getAllPosts", null);
 __decorate([
     (0, common_1.Get)('/:id'),
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Number]),
     __metadata("design:returntype", Object)
-], PostsController.prototype, "getOneUser", null);
+], PostsController.prototype, "getOnePost", null);
 __decorate([
     (0, common_1.Post)(),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [posts_entity_1.Post]),
     __metadata("design:returntype", Object)
-], PostsController.prototype, "postNewUser", null);
+], PostsController.prototype, "postNewPost", null);
 __decorate([
     (0, common_1.Put)('/:id'),
     __param(0, (0, common_1.Param)('id')),
@@ -63,14 +63,14 @@ __decorate([
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Number, Object]),
     __metadata("design:returntype", Object)
-], PostsController.prototype, "putUpdateUser", null);
+], PostsController.prototype, "putUpdatePost", null);
 __decorate([
     (0, common_1.Delete)('/:id'),
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Number]),
     __metadata("design:returntype", Object)
-], PostsController.prototype, "deleteUser", null);
+], PostsController.prototype, "deletePost", null);
 PostsController = __decorate([
     (0, common_1.Controller)('api/v1/posts'),
     __metadata("design:paramtypes", [posts_service_1.PostsService])

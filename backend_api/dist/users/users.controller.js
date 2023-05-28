@@ -29,6 +29,9 @@ let UsersController = class UsersController {
     postNewUser(body) {
         return this.usersService.postNewUser(body);
     }
+    postLogin(body) {
+        return this.usersService.postLogin(body);
+    }
     putUpdateUser(id, body) {
         return this.usersService.putUpdateUser(id, body);
     }
@@ -56,6 +59,13 @@ __decorate([
     __metadata("design:paramtypes", [users_entity_1.User]),
     __metadata("design:returntype", Object)
 ], UsersController.prototype, "postNewUser", null);
+__decorate([
+    (0, common_1.Post)('/login'),
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [users_entity_1.User]),
+    __metadata("design:returntype", Object)
+], UsersController.prototype, "postLogin", null);
 __decorate([
     (0, common_1.Put)('/:id'),
     __param(0, (0, common_1.Param)('id')),

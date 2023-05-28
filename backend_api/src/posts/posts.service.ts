@@ -67,9 +67,9 @@ export class PostsService {
     const url_imagem = updatedPost.url_imagem;
     const query = `UPDATE post SET user = ?, description = ?, url_imagem = ? WHERE id = ?`;
     await this.postRepository.query(query, [user, description, url_imagem, id]);
-    const query2 = `SELECT id, user, post_date, description, likes, url_imagem FROM user WHERE id = ?`;
-    const newPost = await this.postRepository.query(query2, [id]);
-    if (newPost.length === 0) {
+
+    const newPost = await this.getOnePost(id);
+    if (newPost.status == 404) {
       return { status: 404, msg: 'Erro: Post não existe' };
     }
     return { status: 200, msg: 'Sucesso', post: newPost[0] };

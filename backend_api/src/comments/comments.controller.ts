@@ -7,22 +7,22 @@ export class CommentsController {
   constructor(private readonly commentsService: CommentsService) {}
 
   @Get()
-  getAllUsers(): any {
-    return this.commentsService.getAllComments();
+  getAllComments(@Param('id') id: number): any {
+    return this.commentsService.getAllComments(id);
   }
 
   @Get('/:id')
-  getOneUser(@Param('id') id: number): any {
+  getOneComment(@Param('id') id: number): any {
     return this.commentsService.getOneComment(id);
   }
 
   @Post()
-  postNewUser(@Body() body: Comment): any {
-    return this.commentsService.postNewComment(body);
+  postNewComment(@Body() body: Comment, @Param('id') id: number): any {
+    return this.commentsService.postNewComment(body, id);
   }
 
   @Delete('/:id')
-  deleteUser(@Param('id') id: number): any {
+  deleteComment(@Param('id') id: number): any {
     return this.commentsService.deleteComment(id);
   }
 }

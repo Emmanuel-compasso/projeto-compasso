@@ -9,9 +9,9 @@ interface CommentResponse {
 export declare class CommentsService {
     private commentRepository;
     constructor(commentRepository: Repository<Comment>);
-    getAllComments(): Promise<CommentResponse>;
+    getAllComments(id: number): Promise<CommentResponse>;
     getOneComment(id: number): Promise<CommentResponse>;
-    postNewComment(comment: Comment): Promise<CommentResponse>;
+    postNewComment(comment: Comment, id: number): Promise<CommentResponse>;
     deleteComment(id: number): Promise<CommentResponse>;
 }
 export {};

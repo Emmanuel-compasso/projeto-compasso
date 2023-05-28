@@ -29,6 +29,11 @@ export class UsersController {
     return this.usersService.postNewUser(body);
   }
 
+  @Post('/login')
+  postLogin(@Body() body: User): any {
+    return this.usersService.postLogin(body);
+  }
+
   @Put('/:id')
   putUpdateUser(@Param('id') id: number, @Body() body: any): any {
     return this.usersService.putUpdateUser(id, body);

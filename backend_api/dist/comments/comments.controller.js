@@ -20,46 +20,48 @@ let CommentsController = class CommentsController {
     constructor(commentsService) {
         this.commentsService = commentsService;
     }
-    getAllUsers() {
-        return this.commentsService.getAllComments();
+    getAllComments(id) {
+        return this.commentsService.getAllComments(id);
     }
-    getOneUser(id) {
+    getOneComment(id) {
         return this.commentsService.getOneComment(id);
     }
-    postNewUser(body) {
-        return this.commentsService.postNewComment(body);
+    postNewComment(body, id) {
+        return this.commentsService.postNewComment(body, id);
     }
-    deleteUser(id) {
+    deleteComment(id) {
         return this.commentsService.deleteComment(id);
     }
 };
 __decorate([
     (0, common_1.Get)(),
+    __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
+    __metadata("design:paramtypes", [Number]),
     __metadata("design:returntype", Object)
-], CommentsController.prototype, "getAllUsers", null);
+], CommentsController.prototype, "getAllComments", null);
 __decorate([
     (0, common_1.Get)('/:id'),
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Number]),
     __metadata("design:returntype", Object)
-], CommentsController.prototype, "getOneUser", null);
+], CommentsController.prototype, "getOneComment", null);
 __decorate([
     (0, common_1.Post)(),
     __param(0, (0, common_1.Body)()),
+    __param(1, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [comments_entity_1.Comment]),
+    __metadata("design:paramtypes", [comments_entity_1.Comment, Number]),
     __metadata("design:returntype", Object)
-], CommentsController.prototype, "postNewUser", null);
+], CommentsController.prototype, "postNewComment", null);
 __decorate([
     (0, common_1.Delete)('/:id'),
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Number]),
     __metadata("design:returntype", Object)
-], CommentsController.prototype, "deleteUser", null);
+], CommentsController.prototype, "deleteComment", null);
 CommentsController = __decorate([
     (0, common_1.Controller)('api/v1/posts/:id/comments'),
     __metadata("design:paramtypes", [comments_service_1.CommentsService])

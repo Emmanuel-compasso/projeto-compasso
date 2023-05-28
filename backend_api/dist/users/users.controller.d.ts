@@ -6,6 +6,7 @@ export declare class UsersController {
     getAllUsers(): any;
     getOneUser(id: number): any;
     postNewUser(body: User): any;
+    postLogin(body: User): any;
     putUpdateUser(id: number, body: any): any;
     deleteUser(id: number): any;
 }

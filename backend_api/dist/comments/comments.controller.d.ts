@@ -3,8 +3,8 @@ import { Comment } from './comments.entity';
 export declare class CommentsController {
     private readonly commentsService;
     constructor(commentsService: CommentsService);
-    getAllUsers(): any;
-    getOneUser(id: number): any;
-    postNewUser(body: Comment): any;
-    deleteUser(id: number): any;
+    getAllComments(id: number): any;
+    getOneComment(id: number): any;
+    postNewComment(body: Comment, id: number): any;
+    deleteComment(id: number): any;
 }
